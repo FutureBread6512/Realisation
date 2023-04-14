@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Realisation</string>
+
+    <string-array name="test">
+        <item>элемент1</item>
+        <item>элемент2</item>
+        <item>элемент3</item>
+        <item>элемент4</item>
+        <item>элемент5</item>
+        <item>элемент6</item>
+
+    </string-array>
+    <string-array name="inf_student_1">
+        <item>Сидя на трибуне играть в футбол не научишься.</item>
+    </string-array>
+
+    <string-array name="inf_student_2">
+        <item>К отцу приходит сын, где-то n лет</item>
+        <item>И говорит ему: "Папа, помоги найти ответ.</item>
+        <item>Мне уже n лет, но не в курсе я, что такое понятие рекурсия" Отец говорит: "Смотри:</item>
+        <item>К тебе приходит сын n-1 лет</item>
+        <item>И говорит тебе: "Папа, помоги найти ответ.</item>
+        <item>Мне уже n-1 лет, но не в курсе я, что такое понятие рекурсия" Отец говорит: "Смотри:</item>
+        <item>К тебе приходит сын, n-2 лет</item>
+        <item>И говорит тебе: "Папа, помоги найти ответ.</item>
+        <item>Мне уже n-2 лет, но не в курсе я, что такое понятие рекурсия" Отец говорит: "Смотри:</item>
+        <item>К тебе приходит сын, n-k лет</item>
+        <item>И говорит тебе: "Папа, помоги найти ответ.</item>
+        <item>Мне уже n-k лет, но не в курсе я, что такое понятие рекурсия"</item>
+        <item>Понятие рекурсия…</item>
+        <item>n-1 лет,</item>
+        <item>n-2 лет,</item>
+        <item>n-k лет,</item>
+        <item>n-k-1 лет,</item>
+        <item>n-n лет?</item>
+        <item>Хм…</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
