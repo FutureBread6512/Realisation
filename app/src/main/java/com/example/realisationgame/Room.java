@@ -3,6 +3,7 @@ package com.example.realisationgame;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -22,7 +23,7 @@ public class Room extends View {
     boolean isDraw=true;
     String whosDialog = "";
     Context context;
-
+    MainActivity mainActivity;
 
 
     public Room(Context context, Bitmap map, Bitmap teach, Bitmap student1, Bitmap student2, Bitmap gg, String[] text, String[]  inf_student2_dialog, String[]  inf_student1_dialog) {
@@ -83,7 +84,7 @@ public class Room extends View {
                 }
                 if (map.getWidth() / 4 + margingx < touchX && touchX < map.getWidth() / 4 + margingx + teach.getWidth() && map.getHeight() / 4 + margingy - procenty * 5 < touchy && map.getHeight() / 4 + margingy - procenty * 5 + teach.getHeight() > touchy) {
                     whosDialog= "teacher";
-                    AlertDialog dialog = getDialog(text, context, "Учитель");
+                    AlertDialog dialog = getDialogTeacher(context);
                     dialog.show();
                 }
                 if (getWidth()-2*(procentx+student2.getWidth()+margingx) < touchX && touchX < getWidth()-2*(procentx+student2.getWidth()+margingx)+ student1.getWidth() && (getHeight()-(2*procenty+student1.getHeight()+margingy) < touchy && getHeight()-(2*procenty+student1.getHeight()+margingy) + teach.getHeight() > touchy)) {
@@ -142,16 +143,18 @@ public class Room extends View {
     public AlertDialog getDialogTeacher(Context context1){
         AlertDialog.Builder builder = new AlertDialog.Builder(context1);
 
-        final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_teacher, null); // Получаем layout по его ID
+        final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_teacher, null);
         builder.setView(view);
         TextView teachername = view.findViewById(R.id.teachers_name);
         Button button = view.findViewById(R.id.yes_button);
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                mainActivity.goOnTest();
 
             }
         });
+        return builder.create();
     }
 
     public  int getKoeff(){
