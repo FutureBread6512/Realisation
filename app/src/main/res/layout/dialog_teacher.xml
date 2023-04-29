@@ -10,19 +10,38 @@
         android:layout_height="wrap_content"
         android:id="@+id/teachers_name"
         android:layout_margin="10dp"
+        android:text=""
+        android:textColor="#052E8B"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/teachers_t"
+    android:layout_margin="10dp"
+    android:text="Готов к тесту?"
+        android:textColor="#052E8B"
+        android:gravity="center_horizontal"
+    app:layout_constraintTop_toBottomOf="@+id/teachers_name"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    />
+
     <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text=""
+    android:text="Я готов!"
     android:id="@+id/yes_button"
         android:backgroundTint="#3F51B5"
     android:layout_margin="10dp"
-    app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/teachers_t"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

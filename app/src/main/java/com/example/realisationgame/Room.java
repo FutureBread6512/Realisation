@@ -26,7 +26,9 @@ public class Room extends View {
     MainActivity mainActivity;
 
 
-    public Room(Context context, Bitmap map, Bitmap teach, Bitmap student1, Bitmap student2, Bitmap gg, String[] text, String[]  inf_student2_dialog, String[]  inf_student1_dialog) {
+    public Room(Context context, Bitmap map, Bitmap teach, Bitmap student1,
+                Bitmap student2, Bitmap gg, String[] text, String[]  inf_student2_dialog, String[]  inf_student1_dialog,
+                MainActivity mainActivity) {
         super(context);
         this.map = map;
         this.gg=gg;
@@ -38,7 +40,7 @@ public class Room extends View {
         this.student2 = student2;
         this.context=context;
         paint=new Paint();
-
+        this.mainActivity = mainActivity;
     }
 
 
@@ -146,12 +148,12 @@ public class Room extends View {
         final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_teacher, null);
         builder.setView(view);
         TextView teachername = view.findViewById(R.id.teachers_name);
+        teachername.setText("Учитель");
         Button button = view.findViewById(R.id.yes_button);
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainActivity.goOnTest();
-
             }
         });
         return builder.create();

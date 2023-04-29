@@ -3,7 +3,6 @@ package com.example.realisationgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -34,10 +33,9 @@ public class MainActivity extends AppCompatActivity {
         teacher = BitmapFactory.decodeResource(resources, R.drawable.inf_teach);
 
 
-        Room map = new Room(this, room, teacher, student1, student2, gg, text, inf_student1_dialog, inf_student2_dialog);
+        Room map = new Room(this, room, teacher, student1, student2, gg, text, inf_student1_dialog, inf_student2_dialog, MainActivity.this);
         setContentView(map);
-
-        //bolvanchikTouched = map.isOnBolvanchik(map.touchX, map.touchY);
+//        bolvanchikTouched = map.isOnBolvanchik(map.touchX, map.touchY);
 //        if (bolvanchikTouched.equals("")){
 //            DialogForCharacter.getDialog(this,text );
 //
@@ -45,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
     public void goOnTest(){
-        if (intent != null) startActivity(intent);
+        startActivity(intent);
+    }
+    public void goAgainOnTest(){
+        finish();
+        startActivity(intent);
     }
 }

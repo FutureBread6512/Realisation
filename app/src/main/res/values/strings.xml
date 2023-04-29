@@ -8,8 +8,21 @@
         <item>элемент4</item>
         <item>элемент5</item>
         <item>элемент6</item>
-
     </string-array>
+
+        <string-array name="delopers_text">
+            <item>Я разработчик Вывожу тебя из игры</item>
+            <item>Почему ты здесь? Тебе тут нравится? </item>
+            <item>Хотя к чему все эти вопросы</item>
+            <item>Должен признать - многое не воплотилось, текстуры, музыка, код съели баги.. </item>
+            <item>Будет монетизация- будут решения. </item>
+            <item>(Разработчику заплатите чеканной монетой…)</item>
+            <item>Ты закончил прохождение игры. *Апплодисменты*</item>
+            <item>Надеюсь, игра вызвала у тебя много эмоций. Или может ничего? </item>
+            <item>Но знай: у каждого из нас своя реализация. Какая будет у тебя? Строй свою жизнь…</item>
+        </string-array>
+
+
     <string-array name="inf_student_1">
         <item>Сидя на трибуне играть в футбол не научишься.</item>
     </string-array>
@@ -35,6 +48,17 @@
         <item>n-n лет?</item>
         <item>Хм…</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="into_text">
+        <item>Поздравляем! Вы зачислены! Вот несколько правил школы:</item>
+        <item>1. Проходите тесты учителей в каждой комнате. </item>
+        <item>Тесты не сложные и веселые. Это ключ к прохождению.</item>
+        <item>2. Общайтесь с другими учениками. Team work - dream work.</item>
+        <item>Чтобы поговорить нажмите на ученика. Нажмите на кнопку Далее, чтобы увидеть следующую фразу.
+            Если кнопки нет, нажмите по кабинету, чтобы «отойти» от диалога.</item>
+        <item> 3. Веселитесь!</item>
+    </string-array>
+
+    <string name="Realisation"> <b>Реализация</b></string>
+    <string name="version">Версия: альфа дельта бета штрих</string>
 </resources>
