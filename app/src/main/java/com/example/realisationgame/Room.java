@@ -18,7 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 public class Room extends View {
     Bitmap map, teach, student1, student2, gg;
     Paint paint;
-    String[] text, inf_student1_dialog, inf_student2_dialog;
+    String[] inf_student1_dialog, inf_student2_dialog;
     int procentx, procenty, k, margingx, margingy;
     boolean isDraw=true;
     String whosDialog = "";
@@ -27,12 +27,11 @@ public class Room extends View {
 
 
     public Room(Context context, Bitmap map, Bitmap teach, Bitmap student1,
-                Bitmap student2, Bitmap gg, String[] text, String[]  inf_student2_dialog, String[]  inf_student1_dialog,
+                Bitmap student2, Bitmap gg, String[]  inf_student2_dialog, String[]  inf_student1_dialog,
                 MainActivity mainActivity) {
         super(context);
         this.map = map;
         this.gg=gg;
-        this.text = text;
         this.inf_student2_dialog = inf_student2_dialog;
         this.inf_student1_dialog= inf_student1_dialog;
         this.teach = teach;
@@ -174,14 +173,9 @@ public class Room extends View {
         nameText.setText("Это я");
         // ImageView icon = activity.findViewById(R.id.imageView);
         Button button = view.findViewById(R.id.button);
+        button.setVisibility(INVISIBLE);
         // icon.setImageResource(R.drawable.icon_better);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-    return builder.create();
+        return builder.create();
     }
     public  int getKoeff(){
         return getWidth()/map.getWidth();

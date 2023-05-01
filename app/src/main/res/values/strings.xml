@@ -61,5 +61,5 @@
     </string-array>
 
     <string name="Realisation"> <b>Реализация</b></string>
-    <string name="version">Версия</string>
+    <string name="version">Версия альфа</string>
 </resources>

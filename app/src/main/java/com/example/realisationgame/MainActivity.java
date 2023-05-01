@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         teacher = BitmapFactory.decodeResource(resources, R.drawable.inf_teach);
 
 
-        Room map = new Room(this, room, teacher, student1, student2, gg, text, inf_student1_dialog, inf_student2_dialog, MainActivity.this);
+        Room map = new Room(this, room, teacher, student1, student2, gg, inf_student1_dialog, inf_student2_dialog, MainActivity.this);
         setContentView(map);
 //        bolvanchikTouched = map.isOnBolvanchik(map.touchX, map.touchY);
 //        if (bolvanchikTouched.equals("")){

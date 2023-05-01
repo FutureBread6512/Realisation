@@ -80,8 +80,6 @@ public class IntoAndOutroActivity extends AppCompatActivity {
             StartButton.setAnimation(anim);
             versionText.setAnimation(anim);
 
-
-
             editor.putBoolean("inf_room_test", false);
             editor.commit();
             disanim.setAnimationListener(new Animation.AnimationListener() {
@@ -126,6 +124,7 @@ public class IntoAndOutroActivity extends AppCompatActivity {
                             startActivity(intent);
                             overridePendingTransition(R.anim.flash_in, R.anim.flash_out);
                             WhatPhraseId = 0;
+                            onClick = !onClick;
                         }
                     }
                 }
