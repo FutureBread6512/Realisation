@@ -57,8 +57,9 @@
         <item>Чтобы поговорить нажмите на ученика. Нажмите на кнопку Далее, чтобы увидеть следующую фразу.
             Если кнопки нет, нажмите по кабинету, чтобы «отойти» от диалога.</item>
         <item> 3. Веселитесь!</item>
+        <item></item>
     </string-array>
 
     <string name="Realisation"> <b>Реализация</b></string>
-    <string name="version">Версия: альфа дельта бета штрих</string>
+    <string name="version">Версия</string>
 </resources>

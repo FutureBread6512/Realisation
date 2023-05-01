@@ -81,7 +81,7 @@ public class Room extends View {
     // if (touchX != null && touchy != null){
                 if ((getWidth()-gg.getWidth())/2 < touchX && touchX < (getWidth()-gg.getWidth())/2 + gg.getWidth() && (getHeight()-gg.getHeight())/2< touchy &&  touchy<(getHeight()-gg.getHeight())/2+ gg.getHeight())  {
                     whosDialog= "gg";
-                    AlertDialog dialog = getDialog(text, context, "Я");
+                    AlertDialog dialog = getMainDialog(context);
                     dialog.show();
                 }
                 if (map.getWidth() / 4 + margingx < touchX && touchX < map.getWidth() / 4 + margingx + teach.getWidth() && map.getHeight() / 4 + margingy - procenty * 5 < touchy && map.getHeight() / 4 + margingy - procenty * 5 + teach.getHeight() > touchy) {
@@ -131,7 +131,9 @@ public class Room extends View {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count[0] <text.length-1) {textView.setText(text[count[0]]);
+                if (name.equals("Я")){
+                    textView.setText("Побед в сапере: "+ mainActivity.getWins());
+                } else if (count[0] <text.length-1) {textView.setText(text[count[0]]);
                     count[0]++;}
                 else if (count[0]==text.length-1) {
                     textView.setText(text[count[0]]);
@@ -158,7 +160,29 @@ public class Room extends View {
         });
         return builder.create();
     }
+    public AlertDialog getMainDialog(Context context1) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(context1);
+
+        final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_pattern, null); // Получаем layout по его ID
+        builder.setView(view);
+
+        TextView textView = view.findViewById(R.id.textView);
+        int col = mainActivity.getWins();
+        textView.setText("Побед в сапере: " + col);
+        TextView nameText = view.findViewById(R.id.name);
+        nameText.setText("Это я");
+        // ImageView icon = activity.findViewById(R.id.imageView);
+        Button button = view.findViewById(R.id.button);
+        // icon.setImageResource(R.drawable.icon_better);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+    return builder.create();
+    }
     public  int getKoeff(){
         return getWidth()/map.getWidth();
     }

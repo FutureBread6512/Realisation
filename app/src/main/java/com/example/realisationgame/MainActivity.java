@@ -3,7 +3,9 @@ package com.example.realisationgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,8 +15,11 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
     Resources resources;
     Bitmap room, gg, student1, student2, teacher;
-    Intent intent;
+    Intent intentTest, intentFinal;
+    String col_win;
     String[] text, inf_student1_dialog, inf_student2_dialog;
+    private SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
         text = resources.getStringArray(R.array.test);
         inf_student1_dialog = resources.getStringArray(R.array.inf_student_1);
         inf_student2_dialog = resources.getStringArray(R.array.inf_student_2);
-        intent = new Intent(MainActivity.this, TestActivity.class);
+        intentTest = new Intent(MainActivity.this, TestActivity.class);
+        intentFinal = new Intent(MainActivity.this, IntoAndOutroActivity.class);
+        sharedPreferences = getSharedPreferences("my_shared", Context.MODE_PRIVATE);
+        col_win = sharedPreferences.getString("col", "0");
 
         room = BitmapFactory.decodeResource(resources, R.drawable.map_inf);
         gg = BitmapFactory.decodeResource(resources, R.drawable.gg_base1);
@@ -43,10 +51,18 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
     public void goOnTest(){
-        startActivity(intent);
+        startActivity(intentTest);
     }
-    public void goAgainOnTest(){
-        finish();
-        startActivity(intent);
+
+    public void isTime(){
+        if (sharedPreferences.getBoolean("inf_room_test", false)){
+            startActivity(intentFinal);
+            overridePendingTransition(R.anim.flash_in, R.anim.flash_out);
+        }
+    }
+    public int getWins() {
+        int s = sharedPreferences.getString("col", "0").length();
+        isTime();
+        return s;
     }
 }
