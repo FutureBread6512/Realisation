@@ -2,8 +2,6 @@ package com.example.realisationgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,9 +9,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -50,7 +46,7 @@ public class IntoAndOutroActivity extends AppCompatActivity {
         disanim = AnimationUtils.loadAnimation(this, R.anim.dissapear_element);
         sharedPreferences = getSharedPreferences("my_shared", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        if (sharedPreferences.getBoolean("inf_room_test",false)){
+        if (sharedPreferences.getBoolean("inf_room_test",false) && (sharedPreferences.getBoolean("bio_room_test", false)) && (sharedPreferences.getBoolean("lit_room_test", false))){
             StartButton.setAlpha(0f);
             MainText.setAlpha(0f);
             MainText2.setAlpha(0f);
@@ -59,18 +55,17 @@ public class IntoAndOutroActivity extends AppCompatActivity {
             MainRules.setText(devText[WhatPhraseId]);
             WhatPhraseId++;
             editor.putBoolean("inf_room_test", false);
+            editor.putBoolean("bio_room_test", false);
+            editor.putBoolean("lit_room_test", false);
             editor.commit();
-            FinalButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (WhatPhraseId >= 1 && WhatPhraseId != devText.length) {
-                        MainRules.setText(devText[WhatPhraseId]);
-                        WhatPhraseId ++;
-                    } else {
-                        startActivity(againIntent);
-                        overridePendingTransition(R.anim.flash_in, R.anim.flash_out);
-                        WhatPhraseId = 0;
-                    }
+            FinalButton.setOnClickListener(view -> {
+                if (WhatPhraseId >= 1 && WhatPhraseId != devText.length) {
+                    MainRules.setText(devText[WhatPhraseId]);
+                    WhatPhraseId ++;
+                } else {
+                    startActivity(againIntent);
+                    overridePendingTransition(R.anim.flash_in, R.anim.flash_out);
+                    WhatPhraseId = 0;
                 }
             });
         } else {
@@ -79,8 +74,9 @@ public class IntoAndOutroActivity extends AppCompatActivity {
             StartButton.setVisibility(View.VISIBLE);
             StartButton.setAnimation(anim);
             versionText.setAnimation(anim);
-
             editor.putBoolean("inf_room_test", false);
+            editor.putBoolean("bio_room_test", false);
+            editor.putBoolean("lit_room_test", false);
             editor.commit();
             disanim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -112,6 +108,7 @@ public class IntoAndOutroActivity extends AppCompatActivity {
                         StartButton.setAlpha(1f);
                         versionText.setAlpha(0f);
                         StartButton.setAnimation(disanim);
+                        StartButton.startAnimation(disanim);
                         onClick = !onClick;
                     } else {
                         if (WhatPhraseId >= 1 && WhatPhraseId != rulesText.length) {
@@ -124,7 +121,6 @@ public class IntoAndOutroActivity extends AppCompatActivity {
                             startActivity(intent);
                             overridePendingTransition(R.anim.flash_in, R.anim.flash_out);
                             WhatPhraseId = 0;
-                            onClick = !onClick;
                         }
                     }
                 }

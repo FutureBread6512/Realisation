@@ -4,9 +4,7 @@ package com.example.realisationgame;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,22 +17,19 @@ import androidx.appcompat.app.AlertDialog;
 import java.util.Random;
 
 public class TestGame extends View {
-    int len=5; // ширина и высота сетки
-    int numMines=0; // число мин на поле
+    int numMines=0;
     int closedCells=49;
     boolean isEmpty = true;
     Paint paintText, paintCell, paintTextView;
-    int[][] mines; // двумерный массив, 1 если есть мина, 0 если мины нет
-    boolean[][] cells; //наличие клеточки
+    int[][] mines;
+    boolean[][] cells;
     int x=40, y=40;
     int paddingx=0, paddingy=0;
     Context context;
-    MainActivity mainActivity;
     TestActivity testActivity;
     float touchX, touchY;
 
     public TestGame(Context context, TestActivity testActivity) {
-   // public TestGame(Context context, MainActivity mainActivity, TestActivity testActivity) {
         super(context);
         paintText = new Paint();
         paintCell = new Paint();
@@ -47,7 +42,7 @@ public class TestGame extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Drawable shape = context.getResources().getDrawable(R.drawable.main_background);
-        shape.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        shape.setBounds(0, 0, getWidth(), getHeight());
         shape.draw(canvas);
         if(isEmpty){
             mines = new int[7][7];
@@ -112,10 +107,7 @@ public class TestGame extends View {
         int width = mines[0].length;
         for (int k = i - 1; k <= i + 1; ++k) {
             for (int l = j - 1; l <= j + 1; ++l) {
-                // проверка на выход за границы массива
-                // и проверка на то, что обрабатываемая ячейка не равна изначальной ячейке
                 if (0 <= k && k < height && 0 <= l && l < width && (k != i || l != j)) {
-                    // любая операция с соседним элементом
                     if (mines[k][l] == -1) count++;
                 }
             }
@@ -138,9 +130,6 @@ public class TestGame extends View {
         return true;
     }
     private void calculate(){
-        //координаты центра окружности
-        float x0, y0;
-        //номера строк и столбца
         int i,j;
         i=(int)(touchY-paddingy)/80;
         j=(int)(touchX-paddingx)/80;
@@ -153,7 +142,6 @@ public class TestGame extends View {
                 cells[i][j]=!cells[i][j];
                 closedCells--;
             }
-
             invalidate();
         }
         if (closedCells == numMines){
@@ -165,22 +153,14 @@ public class TestGame extends View {
         AlertDialog.Builder builder = new AlertDialog.Builder(context1);
 
         final View view = LayoutInflater.from(context1).inflate(R.layout.lost_dialog, null);
+        TextView textView = view.findViewById(R.id.lost_text);
+        textView.setText("Ба-бах!");
         builder.setView(view);
         Button buttonYes = view.findViewById(R.id.yes_button);
         Button buttonNo = view.findViewById(R.id.no_button);
         builder.setCancelable(false);
-        buttonYes.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testActivity.reGame();
-            }
-        });
-        buttonNo.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testActivity.goInRoom(false);
-            }
-        });
+        buttonYes.setOnClickListener(view1 -> testActivity.reGame());
+        buttonNo.setOnClickListener(view12 -> testActivity.goInRoom(false));
         return builder.create();
     }
     public AlertDialog winDialog(Context context1){
@@ -190,12 +170,7 @@ public class TestGame extends View {
         builder.setView(view);
         Button buttonYes = view.findViewById(R.id.win_button);
         builder.setCancelable(false);
-        buttonYes.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testActivity.goInRoom(true);
-            }
-        });
+        buttonYes.setOnClickListener(view1 -> testActivity.goInRoom(true));
 
         return builder.create();
     }

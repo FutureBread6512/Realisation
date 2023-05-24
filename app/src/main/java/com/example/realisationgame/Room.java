@@ -3,7 +3,6 @@ package com.example.realisationgame;
 
 import android.content.Context;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -24,11 +23,12 @@ public class Room extends View {
     String whosDialog = "";
     Context context;
     MainActivity mainActivity;
+    String id;
 
 
     public Room(Context context, Bitmap map, Bitmap teach, Bitmap student1,
                 Bitmap student2, Bitmap gg, String[]  inf_student2_dialog, String[]  inf_student1_dialog,
-                MainActivity mainActivity) {
+                MainActivity mainActivity, String ID) {
         super(context);
         this.map = map;
         this.gg=gg;
@@ -40,6 +40,7 @@ public class Room extends View {
         this.context=context;
         paint=new Paint();
         this.mainActivity = mainActivity;
+        id=ID;
     }
 
 
@@ -77,7 +78,6 @@ public class Room extends View {
         canvas.drawBitmap(student2,getWidth()-(2*procentx+student2.getWidth()+margingx),getHeight()-(2*procenty+student1.getHeight()+margingy) , paint);
     }
     public void isOnBolvanchik(float touchX, float touchy) {
-    // if (touchX != null && touchy != null){
                 if ((getWidth()-gg.getWidth())/2 < touchX && touchX < (getWidth()-gg.getWidth())/2 + gg.getWidth() && (getHeight()-gg.getHeight())/2< touchy &&  touchy<(getHeight()-gg.getHeight())/2+ gg.getHeight())  {
                     whosDialog= "gg";
                     AlertDialog dialog = getMainDialog(context);
@@ -97,8 +97,7 @@ public class Room extends View {
                     whosDialog= "student2";
                     AlertDialog dialog = getDialog(inf_student2_dialog, context, "Ученик");
                     dialog.show();
-             //  }
-              }
+                }
     }
 
     @Override
@@ -130,9 +129,7 @@ public class Room extends View {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (name.equals("Я")){
-                    textView.setText("Побед в сапере: "+ mainActivity.getWins());
-                } else if (count[0] <text.length-1) {textView.setText(text[count[0]]);
+                if (count[0] <text.length-1) {textView.setText(text[count[0]]);
                     count[0]++;}
                 else if (count[0]==text.length-1) {
                     textView.setText(text[count[0]]);
@@ -151,10 +148,11 @@ public class Room extends View {
         TextView teachername = view.findViewById(R.id.teachers_name);
         teachername.setText("Учитель");
         Button button = view.findViewById(R.id.yes_button);
-        button.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainActivity.goOnTest();
+        button.setOnClickListener(view1 -> {
+            switch (id){
+                case "inf": mainActivity.goOnInfTest(); break;
+                case "bio": mainActivity.goOnBioTest(); break;
+                default: mainActivity.goOnLitTest(); break;
             }
         });
         return builder.create();
@@ -163,18 +161,37 @@ public class Room extends View {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context1);
 
-        final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_pattern, null); // Получаем layout по его ID
+        final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_main, null);
         builder.setView(view);
 
-        TextView textView = view.findViewById(R.id.textView);
-        int col = mainActivity.getWins();
-        textView.setText("Побед в сапере: " + col);
+        TextView textViewMin = view.findViewById(R.id.textViewMin);
+        TextView textViewSn = view.findViewById(R.id.textViewSn);
+        TextView textViewTet = view.findViewById(R.id.textViewTet);
+        int col = mainActivity.getWins("inf");
+        textViewMin.setText("Побед в сапере: " + col);
+        col = mainActivity.getWins("bio");
+        textViewSn.setText("Побед в змейке: " + col);
+        col = mainActivity.getWins("lit");
+        textViewTet.setText("Побед в тетрисе: " + col);
         TextView nameText = view.findViewById(R.id.name);
         nameText.setText("Это я");
-        // ImageView icon = activity.findViewById(R.id.imageView);
-        Button button = view.findViewById(R.id.button);
-        button.setVisibility(INVISIBLE);
-        // icon.setImageResource(R.drawable.icon_better);
+        Button buttonInf = view.findViewById(R.id.inf_map_teleport);
+        Button buttonLit = view.findViewById(R.id.lit_map_teleport);
+        Button buttonBio = view.findViewById(R.id.bio_map_teleport);
+        switch (id) {
+            case "inf":
+                buttonInf.setVisibility(View.GONE);
+                break;
+            case "bio":
+                buttonBio.setVisibility(View.GONE);
+                break;
+            case "lit":
+                buttonLit.setVisibility(View.GONE);
+                break;
+        }
+        buttonInf.setOnClickListener(view12 -> mainActivity.teleport("inf"));
+        buttonBio.setOnClickListener(view1 -> mainActivity.teleport("bio"));
+        buttonLit.setOnClickListener(view13 -> mainActivity.teleport("lit"));
         return builder.create();
     }
     public  int getKoeff(){

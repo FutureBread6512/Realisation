@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_gradient"
+    android:alpha="0.8"
+    >
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#052E8B"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textViewMin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#052E8B"
+        android:layout_margin="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        />
+    <TextView
+        android:id="@+id/textViewSn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#052E8B"
+        android:layout_margin="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMin"
+        />
+    <TextView
+        android:id="@+id/textViewTet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#052E8B"
+        android:layout_margin="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSn"
+        />
+
+    <Button
+        android:id="@+id/inf_map_teleport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Технический кабиинет"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTet"
+        android:backgroundTint="#3F51B5"
+        />
+
+    <Button
+        android:id="@+id/bio_map_teleport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Естсественно-научный кабинет"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inf_map_teleport"
+        android:backgroundTint="#3F51B5"
+        />
+    <Button
+        android:id="@+id/lit_map_teleport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Филологический кабинет"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bio_map_teleport"
+        android:backgroundTint="#3F51B5"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
