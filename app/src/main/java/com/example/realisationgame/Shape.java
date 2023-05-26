@@ -35,23 +35,16 @@ public class Shape {
         }
     }
     public boolean canFlip(){
-//        if (x<9 && y<14){
-//        if (!(gameView.mPoints[x+2][y] ||
-//                gameView.mPoints[x+2][y+1] ||
-//                gameView.mPoints[x][y+2] ||
-//                gameView.mPoints[x+1][y+2]
-//        )){
         switch (id){
             case 0:
                 return getRightX() < 9;
             case 1:
-                return getX() != 1 || getY()< 14;
+                return getX() != 1 || getY() < 14;
             case 2:
                 return getRightX() < 9;
             case 3:
                 return getX() != 1 || getY() < 14;
             default: break;
-//        }}
         }
         return false;
     }
@@ -85,7 +78,6 @@ public class Shape {
             int y = shape[0].length;
             boolean[][] newShape = new boolean[y][x];
 
-            // assign values from shape to newShape
             for (int i = 0; i < x; i++) {
                 for (int j = 0; j < y; j++) {
                     newShape[j][i] = shape[x-1-i][j];

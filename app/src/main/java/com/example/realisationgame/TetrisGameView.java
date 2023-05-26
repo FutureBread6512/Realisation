@@ -165,7 +165,6 @@ public class TetrisGameView extends View {
             for (int i = 0; i < shape.shape[0].length; i++) {
                 block = block || mPoints[shape.getRightX()+1][y + i];
             }
-            Log.i("coord of 3l shape", x+" "+y);
 
             if (x<8 && !block && shape.getRightX() < 10 ){
                 mPoints[shape.getRightX()+1][y]= mPoints[shape.getRightX()][y];
@@ -243,11 +242,9 @@ public class TetrisGameView extends View {
             for (int j = 1; j < 11; j++) {
                 bri = bri || mPoints[j][i];
                 if (!mPoints[j][i]) {
-                    Log.i("innit", "break");
                     break;
                 }
                 if (j == 10){
-                    Log.i("innit", j + " "+ bri);
                     score=993;
                     updateScore();
                     return true;

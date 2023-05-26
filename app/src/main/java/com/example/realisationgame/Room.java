@@ -20,7 +20,6 @@ public class Room extends View {
     String[] inf_student1_dialog, inf_student2_dialog;
     int procentx, procenty, k, margingx, margingy;
     boolean isDraw=true;
-    String whosDialog = "";
     Context context;
     MainActivity mainActivity;
     String id;
@@ -79,23 +78,19 @@ public class Room extends View {
     }
     public void isOnBolvanchik(float touchX, float touchy) {
                 if ((getWidth()-gg.getWidth())/2 < touchX && touchX < (getWidth()-gg.getWidth())/2 + gg.getWidth() && (getHeight()-gg.getHeight())/2< touchy &&  touchy<(getHeight()-gg.getHeight())/2+ gg.getHeight())  {
-                    whosDialog= "gg";
                     AlertDialog dialog = getMainDialog(context);
                     dialog.show();
                 }
                 if (map.getWidth() / 4 + margingx < touchX && touchX < map.getWidth() / 4 + margingx + teach.getWidth() && map.getHeight() / 4 + margingy - procenty * 5 < touchy && map.getHeight() / 4 + margingy - procenty * 5 + teach.getHeight() > touchy) {
-                    whosDialog= "teacher";
                     AlertDialog dialog = getDialogTeacher(context);
                     dialog.show();
                 }
                 if (getWidth()-2*(procentx+student2.getWidth()+margingx) < touchX && touchX < getWidth()-2*(procentx+student2.getWidth()+margingx)+ student1.getWidth() && (getHeight()-(2*procenty+student1.getHeight()+margingy) < touchy && getHeight()-(2*procenty+student1.getHeight()+margingy) + teach.getHeight() > touchy)) {
-                    whosDialog= "student1";
-                    AlertDialog dialog = getDialog(inf_student1_dialog, context, "Ученик");
+                    AlertDialog dialog = getDialog(inf_student1_dialog, context);
                     dialog.show();
                 }
                 if (getWidth()-(2*procentx+student2.getWidth()+margingx)< touchX && touchX < getWidth()-(2*procentx+student2.getWidth()+margingx) + student2.getWidth() && getHeight()-(2*procenty+student1.getHeight()+margingy) < touchy && getHeight()-(2*procenty+student1.getHeight()+margingy) + student2.getHeight() > touchy) {
-                    whosDialog= "student2";
-                    AlertDialog dialog = getDialog(inf_student2_dialog, context, "Ученик");
+                    AlertDialog dialog = getDialog(inf_student2_dialog, context);
                     dialog.show();
                 }
     }
@@ -108,20 +103,16 @@ public class Room extends View {
 
         return true;
     }
-    public AlertDialog getDialog(String[] text, Context context1, String name) {
+    public AlertDialog getDialog(String[] text, Context context1) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context1);
 
-        final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_pattern, null); // Получаем layout по его ID
+        final View view = LayoutInflater.from(context1).inflate(R.layout.dialog_pattern, null);
         builder.setView(view);
 
         TextView textView = view.findViewById(R.id.textView);
         textView.setText(text[0]);
-        TextView nameText = view.findViewById(R.id.name);
-        nameText.setText(name);
-        // ImageView icon = activity.findViewById(R.id.imageView);
         Button button = view.findViewById(R.id.button);
-        // icon.setImageResource(R.drawable.icon_better);
         final int[] count = {1};
         if (text.length == 1){
             button.setVisibility(View.INVISIBLE);

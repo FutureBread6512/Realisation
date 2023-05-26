@@ -92,6 +92,7 @@ public class TetrisActivity extends AppCompatActivity implements Runnable {
         switch (gameStatus) {
             case STATUS_OVER:
                 gameStatusText.setText("Конец игры");
+                gameBtn.setText("закончить");
                 stop();
                 AlertDialog alertDialog;
                 if(gameViewC.score==993){
@@ -134,20 +135,18 @@ public class TetrisActivity extends AppCompatActivity implements Runnable {
     public void run() {
         while (running) {
             mHandler.post(gameViewC::invalidate);
+            if (gameViewC.score!=993){
             if (!gameViewC.isLanded()) gameViewC.moveDown();
             else {
-                if (gameViewC.score==993){
-                    stop();
-                    gameBtn.setText("закончить");
-                setGameStatus(STATUS_OVER);}
                 if (gameViewC.isGameOverFull()){
                     gameViewC.isFull();
                     gameViewC.shape.setId(0);
                     gameViewC.newFigureSpawn();
                 } else {
                     mHandler.post(() -> setGameStatus(STATUS_OVER));
-                }
-            }
+                }}
+            } else {stop();
+            mHandler.post(() -> setGameStatus(STATUS_OVER));}
             try {
                 Thread.sleep(250);
             } catch (InterruptedException ex) {}

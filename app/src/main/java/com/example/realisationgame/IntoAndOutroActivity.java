@@ -22,7 +22,6 @@ public class IntoAndOutroActivity extends AppCompatActivity {
     int WhatPhraseId = 0;
     boolean onClick=false;
     Intent intent, againIntent;
-    private SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +43,11 @@ public class IntoAndOutroActivity extends AppCompatActivity {
         StartButton.setVisibility(View.INVISIBLE);
         anim = AnimationUtils.loadAnimation(this,R.anim.appear_element);
         disanim = AnimationUtils.loadAnimation(this, R.anim.dissapear_element);
-        sharedPreferences = getSharedPreferences("my_shared", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("my_shared", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        if (sharedPreferences.getBoolean("inf_room_test",false) && (sharedPreferences.getBoolean("bio_room_test", false)) && (sharedPreferences.getBoolean("lit_room_test", false))){
+        if (sharedPreferences.getBoolean("inf_room_test",false)
+                && (sharedPreferences.getBoolean("bio_room_test", false))
+                && (sharedPreferences.getBoolean("lit_room_test", false))){
             StartButton.setAlpha(0f);
             MainText.setAlpha(0f);
             MainText2.setAlpha(0f);

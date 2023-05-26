@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public void isTime(){
         if (sharedPreferences.getBoolean("inf_room_test", false)
                 && sharedPreferences.getBoolean("bio_room_test", false) &&
-                sharedPreferences.getBoolean("inf_room_test", false)){
+                sharedPreferences.getBoolean("lit_room_test", false)){
             startActivity(intentFinal);
             overridePendingTransition(R.anim.flash_in, R.anim.flash_out);
         }

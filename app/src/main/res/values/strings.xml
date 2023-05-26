@@ -49,10 +49,11 @@
         <item>Хм…</item>
     </string-array>
     <string-array name="bio_student_1">
-        <item>В теплице с темными стеклами много помидоров не вырастишь</item>
+        <item>....</item>
     </string-array>
     <string-array name="bio_student_2">
-        <item>...</item>
+        <item>Поднимем же руки, поднимем стаканы</item>
+        <item>За алкины, алкены, алканы, стаканы!</item>
     </string-array>
     <string-array name="lit_student_1">
         <item>Чтобы сдать любой гуманитарный предмет, нужно хорошо говорить!</item>
